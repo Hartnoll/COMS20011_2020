@@ -46,6 +46,7 @@ Data Acquisition & Pre-processing
 | 3. Intro to supervised learning| [[Stream link]](https://web.microsoftstream.com/video/98a601f3-ad02-4ac0-95c8-ff2d324806c1) | [[notebook 2]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_2_regression.ipynb) |
 | 4. Linear regression derivation| [[Stream link]](https://web.microsoftstream.com/video/4ed022e8-3d33-4cdd-b952-efe57f74941a) | [[notebook 2]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_2_regression.ipynb) |
 | Problem Sheet W14 | | [[pdf]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_1_problem_sheet_noanswers.pdf) |
+| Q&A Session  | [[Stream link]](https://web.microsoftstream.com/video/7dbd7e14-c2de-465d-a02f-6b52edad3eeb) | - |
 
 #### (Week 15): 14/02/2021 (Laurence)
 | Lecture | video | slides |
@@ -55,4 +56,24 @@ Data Acquisition & Pre-processing
 | 3. Cross-validation| [[Stream link]](https://web.microsoftstream.com/video/3e3966f2-4155-482c-9928-2dc6b8a35e88) | [[notebook 3]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_3_overfitting.ipynb) |
 | 4. Regularisation| [[Stream link]](https://web.microsoftstream.com/video/ede335db-e4b3-40f9-9a32-db48ce7b112d) | [[notebook 3]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_3_overfitting.ipynb) |
 | Problem Sheet W15 | | [[notebook]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/Question_Sheet_1_regression_noanswers.ipynb) |
+| Q&A Session  | [[Stream link]](https://web.microsoftstream.com/video/c90fe9b8-dde1-408a-b994-7d0b3adfab1f) | - |
+
+#### (Week 16): 14/02/2021 (Laurence)
+| Lecture | video | slides |
+| ------ | ---- | --- |
+| 1. Logits parameterisation| [[Stream link]](https://web.microsoftstream.com/video/1a83f72a-bc2d-498a-beef-31fa2f963b09) | [[notebook 4]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_4_classification.ipynb) |
+| 2. Gradient descent + overfitting| [[Stream link]](https://web.microsoftstream.com/video/67fbcff2-d688-443f-bf14-597fb73c1076) | [[notebook 4]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_4_classification.ipynb) |
+| 3. KNN/WNN and nearest centroids| [[Stream link]](https://web.microsoftstream.com/video/5766e6dc-d2da-48f9-90eb-cd123f09897e) | [[notebook 4]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_4_classification.ipynb) |
+| 4. Bayesian classification| [[Stream link]](https://web.microsoftstream.com/video/577a17a7-8eff-4d7f-981f-8528a29048fb) | [[notebook 4]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_4_classification.ipynb) |
+| Problem Sheet W16 | | [[notebook]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/Question_Sheet_2_classification.ipynb) |
+
+
+#### Notebook pdfs
+I have printed the Notebooks as pdfs.  Note that this really doesn't work well, as many of the interactive plots can't be printed.
+| Notebook |
+| -------- |
+| [[notebook 1]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_1_likelihood.pdf) |
+| [[notebook 2]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_2_regression.pdf) |
+| [[notebook 3]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_3_overfitting.pdf) |
+| [[notebook 4]](https://github.com/LaurenceA/COMS20011_2020/blob/main/notebooks/part_4_classification.pdf) |
 

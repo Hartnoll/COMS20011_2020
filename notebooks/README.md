@@ -32,3 +32,28 @@ conda install nodejs
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install jupyter-matplotlib
 ```
+
+<h2> Installing dependencies on the labmachines </h2>
+  
+You should install the dependencies in a new conda environment.
+
+```bash
+
+# Load anaconda
+module load anaconda/2020.07
+
+# Create new environment and activate
+conda create -n notebooks
+source activate notebooks
+
+# Install Dependencies
+conda install pytorch cpuonly -c pytorch
+conda install -c conda-forge jupyterlab
+conda install matplotlib
+conda install -c conda-forge ipympl
+
+# Reactivate environment before running a notebook
+source deactivate
+source activate notebooks
+
+```
