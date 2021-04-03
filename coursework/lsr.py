@@ -72,15 +72,21 @@ def opt_func(fl, xs, ys):
             err += (ys[idx] - expect)**2 
         err_dict[f] = err
     print(min(err_dict.values()))
-    return min(err_dict, key=err_dict.get)
+    return min(err_dict, key=err_dict.get), min(err_dict.values())
 
 
 fl = [linear, quad, poly3, poly4, poly5, poly6]
 
 file = sys.argv[1]
 xs, ys = load_points_from_file(file)
-fnc = opt_func(fl, xs, ys)
-print(fnc.__name__)
+segmentsX = [xs[x:x+20] for x in range(0, len(xs), 20)]
+segmentsY = [ys[x:x+20] for x in range(0, len(ys), 20)]
+err_sum = 0
+fnc = []
+for idx, Xs in enumerate(segmentsX):
+    fnc[idx], err = opt_func(f1, Xs, ys[idx])
+    err_sum += err
+
 if sys.argv.__contains__("--plot"):
     ones = np.ones(xs.shape)
-    view_data_segments(xs, ys, fnc, ones)
+    view_data_segments(segmentsX, segmentsY, fnc, ones)
