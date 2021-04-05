@@ -16,7 +16,7 @@ def load_points_from_file(filename):
     return points[0].values, points[1].values
 
 
-def view_data_segments(xs, ys, opt_fnc, ones):
+def view_data_segments(segmentsX, segmentsY, fnc, ones):
     """Visualises the input file with each segment plotted in a different colour.
     Args:
         xs : List/array-like of x co-ordinates.
@@ -24,8 +24,9 @@ def view_data_segments(xs, ys, opt_fnc, ones):
     Returns:
         None
     """
-    xs_e = opt_fnc(ones, xs)
-    Wh = least_squares(xs_e, ys)
+    seg_e = []
+    for idx, xs in enumerate(segmentsX):
+        
     assert len(xs) == len(ys)
     assert len(xs) % 20 == 0
     len_data = len(xs)
@@ -33,7 +34,6 @@ def view_data_segments(xs, ys, opt_fnc, ones):
     colour = np.concatenate([[i] * 20 for i in range(num_segments)])
     plt.set_cmap('Dark2')
     plt.scatter(xs, ys, c=colour)
-    plt.plot(xs, xs_e@Wh, '-r')
     plt.show()
 
 def least_squares(xs_e, ys):
@@ -71,7 +71,6 @@ def opt_func(fl, xs, ys):
             expect = x@Wh
             err += (ys[idx] - expect)**2 
         err_dict[f] = err
-    print(min(err_dict.values()))
     return min(err_dict, key=err_dict.get), min(err_dict.values())
 
 
@@ -84,8 +83,10 @@ segmentsY = [ys[x:x+20] for x in range(0, len(ys), 20)]
 err_sum = 0
 fnc = []
 for idx, Xs in enumerate(segmentsX):
-    fnc[idx], err = opt_func(f1, Xs, ys[idx])
+    func, err = opt_func(fl, Xs, segmentsY[idx])
+    fnc.append(func)
     err_sum += err
+print(err_sum)
 
 if sys.argv.__contains__("--plot"):
     ones = np.ones(xs.shape)
