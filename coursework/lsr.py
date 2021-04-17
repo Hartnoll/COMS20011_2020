@@ -15,8 +15,7 @@ def load_points_from_file(filename):
     points = pd.read_csv(filename, header=None)
     return points[0].values, points[1].values
 
-
-def view_data_segments(segmentsX, segmentsY, fnc, ones):
+def view_data_segments(segmentsX, segmentsY, Xs, ys, fnc, ones):
     """Visualises the input file with each segment plotted in a different colour.
     Args:
         xs : List/array-like of x co-ordinates.
@@ -24,9 +23,7 @@ def view_data_segments(segmentsX, segmentsY, fnc, ones):
     Returns:
         None
     """
-    seg_e = []
-    for idx, xs in enumerate(segmentsX):
-        
+
     assert len(xs) == len(ys)
     assert len(xs) % 20 == 0
     len_data = len(xs)
@@ -34,6 +31,10 @@ def view_data_segments(segmentsX, segmentsY, fnc, ones):
     colour = np.concatenate([[i] * 20 for i in range(num_segments)])
     plt.set_cmap('Dark2')
     plt.scatter(xs, ys, c=colour)
+    for idx, Xs in enumerate(segmentsX):
+        Xs_e = fnc[idx](np.ones(Xs.shape), Xs)
+        Wh = least_squares(Xs_e, segmentsY[idx])
+        plt.plot(Xs, Xs_e@Wh, '-r')
     plt.show()
 
 def least_squares(xs_e, ys):
@@ -58,23 +59,35 @@ def poly6(ones, xs):
     return np.column_stack((xs**6, xs**5, xs**4, xs**3, xs**2, xs, ones))
 
 def sin1(ones, xs):
-    return np.column_stack((math.sin(xs), ones))
+    return np.column_stack((np.sin(xs), ones))
+
+def exp(ones, xs):
+    return np.column_stack((2**xs, ones))
 
 def opt_func(fl, xs, ys):
     ones = np.ones(xs.shape)
-    err_dict = {}
+    crossErr_dict = {}
     for f in fl:
+        crossErr = 0
         xs_e = f(ones, xs)
-        Wh = least_squares(xs_e, ys)
-        err = 0
         for idx, x in enumerate(xs_e):
+            xs_e_train = np.array([element for i, element in enumerate(xs_e) if i != idx])
+            ys_train = np.array([element for i, element in enumerate(ys) if i != idx])
+            Wh = least_squares(xs_e_train, ys_train)
             expect = x@Wh
-            err += (ys[idx] - expect)**2 
-        err_dict[f] = err
-    return min(err_dict, key=err_dict.get), min(err_dict.values())
+            crossErr += (ys[idx] - expect)**2
+        crossErr_dict[f] = crossErr
+    err = 0
+    opt = min(crossErr_dict, key=crossErr_dict.get)
+    print(opt)
+    xs_e = opt(ones, xs)
+    Wh = least_squares(xs_e, ys)
+    for idx, x in enumerate(xs_e):
+        expect = x@Wh
+        err += (ys[idx] - expect)**2
+    return min(crossErr_dict, key=crossErr_dict.get), err
 
-
-fl = [linear, quad, poly3, poly4, poly5, poly6]
+fl = [linear, quad, poly3, poly4, poly5, poly6, sin1, exp]
 
 file = sys.argv[1]
 xs, ys = load_points_from_file(file)
@@ -90,4 +103,4 @@ print(err_sum)
 
 if sys.argv.__contains__("--plot"):
     ones = np.ones(xs.shape)
-    view_data_segments(segmentsX, segmentsY, fnc, ones)
+    view_data_segments(segmentsX, segmentsY, xs, ys, fnc, ones)
